@@ -1,0 +1,29 @@
+RUN sudo apt-get install r-base-dev -y
+
+#  Install pip (for installing jupyter notebook/numpy and matplotlib)
+RUN sudo apt install python3-pip -y
+
+#  Install jupyter notebook (works on jammy:1.17, otherwise non-functional)
+RUN pip install notebook
+
+#  Install pandas (?)
+RUN pip install pandas 
+# RUN pip install numpy  (installing pandas installs numpy)
+
+#  Install matplotlib (?)
+RUN pip install matplotlib 
+
+
+#  Install git (works)
+RUN sudo apt install git 
+
+# Microsoft Teams (skipped)
+
+######### End Customizations ###########
+
+RUN chown 1000:0 $HOME
+RUN $STARTUPDIR/set_user_permission.sh $HOME
+
+ENV HOME /home/kasm-user
+WORKDIR $HOME
+RUN mkdir -p $HOME && chown -R 1000:0 $HOME
