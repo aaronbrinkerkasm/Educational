@@ -1,29 +1,22 @@
-RUN sudo apt-get install r-base-dev -y
+{
+  "description": "Data Science Lab",
+  "docker_registry": "https://index.docker.io/v1/",
+  "image_src": "data_science_lab.png",
+  "categories": [
+    "Development"
+  ],
+  "friendly_name": "Data Science Lab",
+  "architecture": [
+    "amd64",
+    "arm64"
+  ],
+  "compatibility": [
+    {
+      "version": "1.18.x",
+      "image": "aaronbrinkerkasm/data_science_lab:1.18.0",
+      "uncompressed_size_mb": 2428,
+      "available_tags": [
+        "1.18.0"
+      ]
 
-#  Install pip (for installing jupyter notebook/numpy and matplotlib)
-RUN sudo apt install python3-pip -y
-
-#  Install jupyter notebook (works on jammy:1.17, otherwise non-functional)
-RUN pip install notebook
-
-#  Install pandas (?)
-RUN pip install pandas 
-# RUN pip install numpy  (installing pandas installs numpy)
-
-#  Install matplotlib (?)
-RUN pip install matplotlib 
-
-
-#  Install git (works)
-RUN sudo apt install git 
-
-# Microsoft Teams (skipped)
-
-######### End Customizations ###########
-
-RUN chown 1000:0 $HOME
-RUN $STARTUPDIR/set_user_permission.sh $HOME
-
-ENV HOME /home/kasm-user
-WORKDIR $HOME
-RUN mkdir -p $HOME && chown -R 1000:0 $HOME
+    }
